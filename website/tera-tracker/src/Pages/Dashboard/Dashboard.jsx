@@ -56,66 +56,48 @@ const useStyles = makeStyles((theme) => ({
   This is the component class
 
 */
-function P_DASHBOARD() {
+function P_DASHBOARD_CONTENT() {
 
   const classes = useStyles();
 
   return (
     <Container maxWidth="x1" >
-      <p className={classes.textStyle1} >Dashboard</p>
+
       <Grid
           container 
           direction="row"
           justifyContent="flex-start"
           alignItems="flex-start"
-          
-          
         >    
-
+        
         <Paper elevation={3} className={classes.paper_style}>
 
-        <img src={img.default} width="50%" />
-        <p className={classes.textStyle2} >Real-Time Monitoring</p>
+          <img src={img.default} width="50%" />
+          <p className={classes.textStyle2} >Real-Time Monitoring</p>
 
         </Paper>
         <Paper elevation={3} className={classes.paper_style2}>
 
-        <img src={img2.default} width="50%" />
+          <img src={img2.default} width="50%" />
 
         </Paper>            
           
         <Paper elevation={3} className={classes.paper_style2}>
 
-        <img src={img3.default} width="50%" />
+          <img src={img3.default} width="50%" />
 
         </Paper>       
          
 
         <Paper elevation={3} className={classes.paper_style2}>
 
-        <img src={img4.default} width="50%" />
+          <img src={img4.default} width="50%" />
 
         </Paper>             
-
-        <Paper elevation={3} className={classes.paper_style3}>
-
-        <p className={classes.textStyle3} >Graph 1</p>
-
-        </Paper>          
-        <Paper elevation={3} className={classes.paper_style3}>
-
-        <p className={classes.textStyle3} >Graph 2</p>
-
-        </Paper>        
-        <Paper elevation={3} className={classes.paper_style4}>
-
-        <p className={classes.textStyle3} >DATA COMPARISON</p>
-
-        </Paper>        
       </Grid>
     </Container>
   );
   
 }
 
-export default P_DASHBOARD;
+export default P_DASHBOARD_CONTENT;
