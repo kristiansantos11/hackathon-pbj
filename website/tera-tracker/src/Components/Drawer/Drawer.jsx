@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '0 8px',
         ...theme.mixins.toolbar,
     },
-    drawerPaper: {
+    drawerPaper: {  
         position: 'relative',
         whiteSpace: 'nowrap',
         width: drawerWidth,
@@ -78,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
     },
 }));
+
 
 function C_DRAWER(props) {
   const classes = useStyles();

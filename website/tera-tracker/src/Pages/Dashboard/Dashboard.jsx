@@ -8,6 +8,11 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
+  textStyle1: {
+    color: theme.palette.primary.main,
+    fontSize: "2rem", //1rem -> 16px
+    textAlign: "center",
+  },
 }));
 
 
@@ -20,12 +25,12 @@ function P_DASHBOARD() {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="lg" className={classes.container}>
+    <Container maxWidth="xl" >
+      <p className={classes.textStyle1} >Hello World</p>
+      <p className={classes.textStyle1} >Testing number 2</p>
 
     </Container>
   );
-
-
   
 }
 

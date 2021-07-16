@@ -22,6 +22,7 @@ import './App.css';
 import C_APPBAR from './Components/AppBar/AppBar';
 import C_DRAWER from './Components/Drawer/Drawer';
 import P_DASHBOARD from './Pages/Dashboard/Dashboard';
+import P_REPORTS from './Pages/Reports/Reports';
 import Theme from './Utilities/Theme';
 import { BrowserRouter as Router ,Route, Redirect, Switch } from 'react-router-dom';
 
@@ -36,6 +37,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     height: '100vh',
   },
+  content: {
+    flexGrow: 1,
+    height: '100vh',
+    overflow: 'auto',
+  },
+  appBarSpacer: theme.mixins.toolbar,
 }));
 
 
@@ -58,6 +65,7 @@ function App() {
 
   return (
     <div className={classes.root}>
+
       <Router>
           <ThemeProvider theme={Theme}>
 
@@ -67,16 +75,22 @@ function App() {
             
             <C_DRAWER open={open} handleDrawerClose={handleDrawerClose}  />
             
-            <main>
+            <main className={classes.content}>
+              <div className={classes.appBarSpacer}/>
               <Switch>
 
                 <Route exact path = "/home">
                   <P_DASHBOARD/>
                 </Route>
 
-                <Redirect from="/" to="/home" />
+                <Route exact path = "/reports">
+                  <P_REPORTS/>
+                </Route>
+
+                <Redirect exact from="/" to="/home" />
 
               </Switch>
+              
             </main>
 
           </ThemeProvider>
