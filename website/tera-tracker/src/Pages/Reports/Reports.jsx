@@ -10,9 +10,19 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
+  textStyle1: {
+    color: theme.palette.primary.main,
+    fontSize: "2rem", //1rem -> 16px
+    textAlign: "left",
+  },
   paper_style:{
-    width: "20%",
-    padding: theme.spacing(6),
+    width: "43%",
+    padding: theme.spacing(30),
+    margin: theme.spacing(3),
+  },
+  paper_style2:{
+    width: "88.5%",
+    padding: theme.spacing(15),
     margin: theme.spacing(3),
   },
 }));
@@ -28,22 +38,28 @@ function P_REPORTS() {
 
   return (
     <Container maxWidth="xl" >
+      <p className={classes.textStyle1} >Data Analysis</p>
       <Grid
           container
           direction="row"
-          justifyContent="center"
-          alignItems="center"
+          justifyContent="top"
+          alignItems="flex-start"
         >
         <Paper elevation={3} className={classes.paper_style}>
 
-            <p>Hello World</p>
+
 
         </Paper>
         <Paper elevation={3} className={classes.paper_style}>
 
-            <img src={img.default} width="100%" />
+
 
         </Paper>
+        <Paper elevation={3} className={classes.paper_style2}>
+
+
+
+        </Paper>        
 
       </Grid>
       
