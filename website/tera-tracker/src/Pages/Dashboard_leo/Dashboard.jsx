@@ -42,7 +42,7 @@ class P_DASHBOARD extends React.Component {
     return (
       <Container maxWidth="lg" className={classes.container_leo1} >
         <Typography variant="h3" style={{padding:"1rem"}}>
-          Data Analysis
+         DATA ANALYSIS
         </Typography>
         
         <Grid
