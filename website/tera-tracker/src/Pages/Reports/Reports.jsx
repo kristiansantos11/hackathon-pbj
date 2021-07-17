@@ -51,12 +51,12 @@ const members = [
   {
     name: 'Dane',
     img: "https://scontent.fmnl4-6.fna.fbcdn.net/v/t1.6435-1/p320x320/204102857_4142638599162698_6680627595354653115_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=7206a8&_nc_ohc=O7dVUsH91hoAX_pMO_K&_nc_ht=scontent.fmnl4-6.fna&oh=26c346d45631c402d98e4a01d0b1443f&oe=60F6B537",
-    description: "UI Designer and Coder"
+    description: `"Pasensya na ha, Godbless" - UI Designer and Coder`
   },
   {
     name: "Paul",
     img: "https://scontent.fmnl4-5.fna.fbcdn.net/v/t1.6435-9/30688952_1844285865622644_6883410696499888128_n.jpg?_nc_cat=111&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=M-EiQOg_quUAX98Lpns&_nc_ht=scontent.fmnl4-5.fna&oh=bb4c2f7f4ad849fb7014df6743e37cf9&oe=60F76FC1",
-    description: "Backend server coder"
+    description: `"Thank you for letting me be a part of this valuable... joke lang. Awit. Awts gege." - Backend server coder`
   },
   {
     name: "Leo",
