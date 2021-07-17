@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
   },
   paper_style:{
-    width: "50%",
+    width: "40%",
     padding: theme.spacing(5),
     margin: theme.spacing(3),
   },

@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  icon:{
+    height: "4rem",
+  }
 }));
 
 function C_APPBAR(props) {
@@ -56,7 +59,7 @@ function C_APPBAR(props) {
           >
             <MenuIcon />
           </IconButton>
-          <img src={img4.default} width="10%" />
+          <img src={img4.default} className={classes.icon} />
 
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             
