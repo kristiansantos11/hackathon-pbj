@@ -1,0 +1,48 @@
+2021-07-16 14:49:26,549 ERROR flask_app Error Here
+
+Traceback (most recent call last):
+  File "/home/Nyawit/mysite/flask_app.py", line 131, in get_sensor_rawdata
+    res = db.execute_query(query)
+  File "/home/Nyawit/mysite/database.py", line 30, in execute_query
+    cur.execute(query)
+sqlite3.OperationalError: near ")": syntax error
+2021-07-16 14:49:51,444 ERROR flask_app Error Here
+
+Traceback (most recent call last):
+  File "/home/Nyawit/mysite/flask_app.py", line 131, in get_sensor_rawdata
+    res = db.execute_query(query)
+  File "/home/Nyawit/mysite/database.py", line 30, in execute_query
+    cur.execute(query)
+sqlite3.OperationalError: near ")": syntax error
+2021-07-16 14:50:50,755 ERROR flask_app Error Here
+
+Traceback (most recent call last):
+  File "/home/Nyawit/mysite/flask_app.py", line 131, in get_sensor_rawdata
+    res = db.execute_query(query)
+  File "/home/Nyawit/mysite/database.py", line 30, in execute_query
+    cur.execute(query)
+sqlite3.OperationalError: near ")": syntax error
+2021-07-16 14:50:55,431 ERROR flask_app Error Here
+
+Traceback (most recent call last):
+  File "/home/Nyawit/mysite/flask_app.py", line 131, in get_sensor_rawdata
+    res = db.execute_query(query)
+  File "/home/Nyawit/mysite/database.py", line 30, in execute_query
+    cur.execute(query)
+sqlite3.OperationalError: near ")": syntax error
+2021-07-16 16:19:03,007 ERROR flask_app Error Here
+
+Traceback (most recent call last):
+  File "/home/Nyawit/mysite/flask_app.py", line 131, in get_sensor_rawdata
+    res = db.execute_query(query)
+  File "/home/Nyawit/mysite/database.py", line 30, in execute_query
+    cur.execute(query)
+sqlite3.OperationalError: no such column: dx
+2021-07-16 16:20:28,683 ERROR flask_app Error Here
+
+Traceback (most recent call last):
+  File "/home/Nyawit/mysite/flask_app.py", line 131, in get_sensor_rawdata
+    res = db.execute_query(query)
+  File "/home/Nyawit/mysite/database.py", line 30, in execute_query
+    cur.execute(query)
+sqlite3.OperationalError: no such column: dx
