@@ -9,6 +9,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 const drawerWidth = 240;
 
+const img4 = require('./Artboard 4.png')
+
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -54,8 +56,10 @@ function C_APPBAR(props) {
           >
             <MenuIcon />
           </IconButton>
+          <img src={img4.default} width="10%" />
+
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Tera Tracker
+            
           </Typography>
         </Toolbar>
       </AppBar>
