@@ -84,7 +84,7 @@ function App() {
                   <P_DASHBOARD/>
                 </Route>
 
-                <Route exact path = "/reports">
+                <Route exact path = "/about">
                   <P_REPORTS/>
                 </Route>
 

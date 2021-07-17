@@ -2,7 +2,7 @@ import React from 'react'
 
 import Chart from "react-apexcharts";
 
-class C_LINECHART extends React.Component{
+class C_MULTICHART extends React.Component{
 
     constructor(props) {
         super(props);
@@ -30,8 +30,10 @@ class C_LINECHART extends React.Component{
                     xaxis: {
                       categories: this.props.xaxis
                     },
+                    yaxis: this.props.yaxis,
                   }}
                 series={this.props.data}
+                
                 type="line"
                 height={this.props.height || "250px"}
                 width={this.props.width || "250px"}
@@ -40,4 +42,4 @@ class C_LINECHART extends React.Component{
     }
 }
 
-export default C_LINECHART
+export default C_MULTICHART

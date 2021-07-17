@@ -16,10 +16,10 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
-  Typography,
 } from '@material-ui/core';
-import C_LINECHART from '../../Components/LineChart/LineChart';
-import P_DASHBOARD_CONTENT from '../../Pages/Dashboard/Dashboard';
+import C_LINECHART from '../LineChart/LineChart';
+
+import { Lowest, Highest } from 'technicalindicators';
 
 const useStyles  = theme => ({
   container: {
@@ -63,7 +63,14 @@ const date_av = [
   ["0325", "March 25, 2021"],
 ]
 
-class C_CHART extends React.Component {
+const axis_list = [
+  [0, "X axis"],
+  [1, "Y axis"],
+  [2, "Z axis"],
+  [8, "Average Movement"],
+]
+
+class C_CHART_LOWHIGH extends React.Component {
 
   constructor(props){
     super(props)
@@ -77,10 +84,7 @@ class C_CHART extends React.Component {
       disp_x : true,
       disp_y : true,
       disp_z : true,
-      disp_dx : false,
-      disp_dy : false,
-      disp_dz : false,
-      disp_dave : false,
+      current_axis: 0,
       current_sensor: 1,
       current_building: 1,
       sensor_list: [],
@@ -127,18 +131,63 @@ class C_CHART extends React.Component {
     this.updateTable(dat.data, dateIn)
   }
 
+  compute_lowest(data, period = 6){
+
+    var input = {
+      period : period, 
+      values : data ,
+    }
+      
+    return Lowest.calculate(input)
+      
+  }
+
+  compute_highest(data, period = 6){
+
+    var input = {
+      period : period, 
+      values : data ,
+    }
+      
+    return Highest.calculate(input)
+      
+  }
+
   updateTable(data, newDate){
     let _st = JSON.parse(JSON.stringify(this.state))
     _st.data = []
-    for(let i=0; i<7;i++){
-      if (this.state[`disp_${["x","y","z","dx","dy","dz","dave"][i]}`]){
-        _st.data.push({
-          name: ["X","Y","Z","X displacement","X displacement","Y displacement","Z displacement","Average Displacement"][i],
-          data: data.map((e) => (e[[0,1,2,5,6,7,8][i]]))
-        })
-      }
-    }
+    _st.yaxis = []
 
+    let n = ["X","Y","Z","","","","","Average Displacement"][this.state.current_axis]
+
+    _st.data.push({
+      name: n,
+      data: data.map((e) => (e[this.state.current_axis]))
+    })
+
+    let lowest = this.compute_lowest(data.map((e) => (e[this.state.current_axis])))
+
+    let l = data.length - lowest.length
+
+
+    _st.data.push({
+      name: `${n} Lowest`,
+      data: [...Array(l).fill(null) ,...lowest]
+    })
+
+    let highest = this.compute_highest(data.map((e) => (e[this.state.current_axis])))
+
+    let h = data.length - highest.length
+
+
+    _st.data.push({
+      name: `${n} Highest`,
+      data: [...Array(h).fill(null) ,...highest]
+    })
+
+
+
+    
     data.map((e) => (e.slice(3,4)))
     
     _st.date = newDate
@@ -154,6 +203,13 @@ class C_CHART extends React.Component {
   selectSensor(event){
     this.setState({...this.state, current_sensor:event.target.value}, ()=>{
       this.loadDataFromServer(this.state.date)
+    })
+    
+  };
+
+  selectAxis(event){
+    this.setState({...this.state, current_axis:event.target.value}, ()=>{
+      this.updateTable(this.dataset.data, this.state.date)
     })
     
   };
@@ -176,14 +232,6 @@ class C_CHART extends React.Component {
     const { classes } = this.props;
     return (
         <>
-            <P_DASHBOARD_CONTENT />
-
-            <Grid item style={{paddingTop: "5%"}} md={12}>
-              <Typography variant="h3">Accelerometer Chart</Typography>
-              <p>Gives the timeline history of the movements of the accelerometer installed in the USHER ERI</p>
-              <p>Drag your mouse on the group to zoom in to specific time of the date</p>
-            </Grid>
-
             <Grid item md={8} sm={12} className={classes.container2} >
                 <Paper className={classes.paperstyle1} >
                 <C_LINECHART 
@@ -222,72 +270,51 @@ class C_CHART extends React.Component {
                     </ListItem>
                     
                     <ListItem>
-                    <FormControl className={classes.formControl}>
-                        <InputLabel id="sensor-from-select-label">Sensor From</InputLabel>
-                        <Select
-                        labelId="sensor-from-select-label"
-                        id="sensor-from-select"
-                        value={this.state.current_sensor}
-                        onChange={this.selectSensor.bind(this)}
-                        >
-                        {this.state.sensor_list.map(e => (<MenuItem value={e["id"]}>{e["name"]}</MenuItem>)) }
-                        </Select>
-                    </FormControl>
+                      <FormControl className={classes.formControl}>
+                          <InputLabel id="sensor-from-select-label">Sensor From</InputLabel>
+                          <Select
+                          labelId="sensor-from-select-label"
+                          id="sensor-from-select"
+                          value={this.state.current_sensor}
+                          onChange={this.selectSensor.bind(this)}
+                          >
+                          {this.state.sensor_list.map(e => (<MenuItem value={e["id"]}>{e["name"]}</MenuItem>)) }
+                          </Select>
+                      </FormControl>
                     </ListItem>
                     
                     <ListItem>
-                    <FormControl className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-label">Date</InputLabel>
-                        <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={this.state.date}
-                        onChange={this.selectDate.bind(this)}
-                        >
-                        {date_av.map(e => (<MenuItem value={e[0]}>{e[1]}</MenuItem>)) }
-                        </Select>
-                    </FormControl>
+                      <FormControl className={classes.formControl}>
+                          <InputLabel id="demo-simple-select-label">Date</InputLabel>
+                          <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={this.state.date}
+                          onChange={this.selectDate.bind(this)}
+                          >
+                          {date_av.map(e => (<MenuItem value={e[0]}>{e[1]}</MenuItem>)) }
+                          </Select>
+                      </FormControl>
+                    </ListItem>
+
+                    <ListItem>
+                      <FormControl className={classes.formControl}>
+                          <InputLabel id="demo-simple-select-label">Axis</InputLabel>
+                          <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={this.state.current_axis}
+                          onChange={this.selectAxis.bind(this)}
+                          >
+                          {axis_list.map(e => (<MenuItem value={e[0]}>{e[1]}</MenuItem>)) }
+                          </Select>
+                      </FormControl>
                     </ListItem>
                     
-                    <ListItem>
-                    <FormControl component="fieldset" className={classes.formControl}>
-                        <FormLabel component="legend">Orientation Displayed on Graph</FormLabel>
-                        <FormGroup>
-                          <FormControlLabel
-                              control={<Checkbox checked={this.state.disp_x} onChange={this.checkChange.bind(this)} name="disp_x" />}
-                              label="Display X Graph"
-                          />
-                          <FormControlLabel
-                              control={<Checkbox checked={this.state.disp_y} onChange={this.checkChange.bind(this)} name="disp_y" />}
-                              label="Display Y Graph"
-                          />
-                          <FormControlLabel
-                              control={<Checkbox checked={this.state.disp_z} onChange={this.checkChange.bind(this)} name="disp_z" />}
-                              label="Display Z Graph"
-                          />
-                          {/*
-                          <FormControlLabel
-                              control={<Checkbox checked={this.state.disp_dx} onChange={this.checkChange.bind(this)} name="disp_dx" />}
-                              label="Display dX Graph"
-                          />
-                          <FormControlLabel
-                              control={<Checkbox checked={this.state.disp_dy} onChange={this.checkChange.bind(this)} name="disp_dy" />}
-                              label="Display dY Graph"
-                          />
-                          <FormControlLabel
-                              control={<Checkbox checked={this.state.disp_dz} onChange={this.checkChange.bind(this)} name="disp_dz" />}
-                              label="Display dZ Graph"
-                          />
-                          */}
-                          <FormControlLabel
-                              control={<Checkbox checked={this.state.disp_dave} onChange={this.checkChange.bind(this)} name="disp_dave" />}
-                              label="Display dAverage Graph"
-                          />
-                        </FormGroup>
-                    </FormControl>
-                    </ListItem>
                 </List>
             </Grid>
+
+
         </>
 
     );
@@ -296,4 +323,4 @@ class C_CHART extends React.Component {
   
 }
 
-export default withStyles(useStyles)(C_CHART);
+export default withStyles(useStyles)(C_CHART_LOWHIGH);

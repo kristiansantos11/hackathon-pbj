@@ -23,11 +23,11 @@ let mainListItems = [
         icon: <DashboardIcon color='secondary'/>,
         path: '/home'
     },
-    {
-        text: 'Building',
-        icon: <BarChartIcon color='secondary'/>,
-        path: '/reports'
-    },
+    //{
+    //    text: 'Building',
+    //    icon: <BarChartIcon color='secondary'/>,
+    //    path: '/reports'
+    //},
 ]
 
 let secondaryListItems = [
